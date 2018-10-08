@@ -1,0 +1,35 @@
+{% set name = "mvstexturing" %}
+{% set version = "master" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://github.com/OpenDroneMap/mvs-texturing/archive/{{ version }}.tar.gz
+  sha256: f87a4c1e1599300400ca15e1c8a584370d8a585cc2cb469300972e9b2599c634
+
+build:
+    number: 0
+
+requirements:
+  build:
+    - {{ compiler("c") }}
+    - {{ compiler("cxx") }}
+    - cmake
+    - ninja
+  host:
+    - libpng
+    - openjpeg
+    - libtiff
+    - tbb-devel
+
+about:
+  home: https://github.com/OpenDroneMap/mvs-texturing
+  license: BSD 3-Clause
+  summary: Algorithm to texture 3D reconstructions from multi-view stereo images
+
+extra:
+  recipe-maintainers:
+    - v-turin
