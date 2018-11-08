@@ -1,0 +1,43 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e32288b..24137fd 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -36,11 +36,12 @@ find_package(PNG REQUIRED)
+ find_package(JPEG REQUIRED)
+ find_package(TIFF REQUIRED)
+ 
+-add_subdirectory(elibs)
++#add_subdirectory(elibs)
+ include_directories(SYSTEM
+     ${CMAKE_SOURCE_DIR}/elibs/rayint/libs
+     ${CMAKE_SOURCE_DIR}/elibs/mve/libs
+-    ${CMAKE_SOURCE_DIR}/elibs/eigen
++#    ${CMAKE_SOURCE_DIR}/elibs/eigen
++    ${EIGEN3_INCLUDE_DIR}
+     ${CMAKE_SOURCE_DIR}/elibs/mapmap/
+     ${CMAKE_SOURCE_DIR}/elibs/mapmap/mapmap
+ )
+diff --git a/apps/texrecon/CMakeLists.txt b/apps/texrecon/CMakeLists.txt
+index 98f9e0f..6bea518 100644
+--- a/apps/texrecon/CMakeLists.txt
++++ b/apps/texrecon/CMakeLists.txt
+@@ -5,6 +5,6 @@ set(BIN texrecon)
+ 
+ add_executable(${BIN} ${SOURCES})
+ set_property(TARGET ${BIN} PROPERTY INTERPROCEDURAL_OPTIMIZATION True)
+-add_dependencies(${BIN} ext_mve)
++#add_dependencies(${BIN} ext_mve)
+ target_link_libraries(${BIN} tex ${TBB_LIBRARIES} -lmve -lmve_util)
+ install(TARGETS ${BIN} RUNTIME DESTINATION bin)
+diff --git a/libs/tex/CMakeLists.txt b/libs/tex/CMakeLists.txt
+index 6efa10f..2220dfb 100644
+--- a/libs/tex/CMakeLists.txt
++++ b/libs/tex/CMakeLists.txt
+@@ -4,6 +4,6 @@ file (GLOB SOURCES "[^_]*.cpp")
+ set(LIBRARY tex)
+ add_library(${LIBRARY} STATIC ${SOURCES})
+ set_property(TARGET ${LIBRARY} PROPERTY INTERPROCEDURAL_OPTIMIZATION True)
+-add_dependencies(${LIBRARY} ext_mve ext_rayint ext_eigen ext_mapmap)
++#add_dependencies(${LIBRARY} ext_mve ext_rayint ext_eigen ext_mapmap)
+ target_link_libraries(${LIBRARY} ${TBB_LIBRARIES} -lmve -lmve_util ${JPEG_LIBRARIES} ${PNG_LIBRARIES} ${TIFF_LIBRARIES})
+ install(TARGETS ${LIBRARY} ARCHIVE DESTINATION lib)

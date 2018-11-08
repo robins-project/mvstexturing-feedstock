@@ -1,14 +1,31 @@
 {% set name = "mvstexturing" %}
 {% set version = "master" %}
+{% set rayint_version = "cuda" %}
+{% set mve_version = "master" %}
+{% set mapmap_version = "master" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/OpenDroneMap/mvs-texturing/archive/{{ version }}.tar.gz
-  sha256: f87a4c1e1599300400ca15e1c8a584370d8a585cc2cb469300972e9b2599c634
+  - fn: {{ name }}-{{ version }}.tar.gz
+    url: https://github.com/OpenDroneMap/mvs-texturing/archive/{{ version }}.tar.gz
+    sha256: f87a4c1e1599300400ca15e1c8a584370d8a585cc2cb469300972e9b2599c634
+    patches:
+      - build.patch
+  - fn: rayint-{{ rayint_version }}.tar.gz
+    url: https://github.com/nmoehrle/rayint/archive/{{ rayint_version }}.tar.gz
+    sha256: 81f636422de3579b2efd0f9ffa8fbcec79e5e148114b8926f98856c3882098c4
+    folder: elibs/rayint
+  - fn: mve-{{ mve_version }}.tar.gz
+    url: https://github.com/simonfuhrmann/mve/archive/{{ mve_version }}.tar.gz
+    sha256: deaa1bcf04817c602119236e9efdd06a762bc8b0c8bb477ddcec0401d803913a
+    folder: elibs/mve
+  - fn: mapmap-{{ mapmap_version }}.tar.gz
+    url: https://github.com/dthuerck/mapmap_cpu/archive/{{ mapmap_version }}.tar.gz
+    sha256: 0103adbd053e360952df0fa731e41eb433319ff63c60ab04f2f6e5a55ec53490
+    folder: elibs/mapmap
 
 build:
     number: 0
@@ -24,6 +41,10 @@ requirements:
     - openjpeg
     - libtiff
     - tbb-devel
+    - eigen {{ eigen }}
+    - rayint {{ rayint }}
+    - mve {{ mve }}
+    - mapmap {{ mapmap }}
 
 about:
   home: https://github.com/OpenDroneMap/mvs-texturing
