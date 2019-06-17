@@ -1,8 +1,11 @@
 {% set name = "mvstexturing" %}
 {% set version = "master" %}
+{% set commit = "ab15dbe28ef25d63912568c495878adee14d4b43" %}
 {% set rayint_version = "cuda" %}
+{% set rayint_commit = "d5a8126aebb98c68b2b98bea05fcc8cebb6a2fb9" %}
 {% set mve_version = "master" %}
-{% set mapmap_version = "master" %}
+{% set mve_commit = "55eb94f34f82694e0f25a7f235c25a06acc0bfae" %}
+{% set mapmap_version = "v1.5" %}
 
 package:
   name: {{ name }}
@@ -10,21 +13,21 @@ package:
 
 source:
   - fn: {{ name }}-{{ version }}.tar.gz
-    url: https://github.com/OpenDroneMap/mvs-texturing/archive/{{ version }}.tar.gz
-    sha256: f87a4c1e1599300400ca15e1c8a584370d8a585cc2cb469300972e9b2599c634
+    url: https://github.com/OpenDroneMap/mvs-texturing/archive/{{ commit }}.tar.gz
+    sha256: ce62631ea84d5c2b0cf8ed109cc6d781effe2facd611cc452617ab39bf360b23
     patches:
       - build.patch
   - fn: rayint-{{ rayint_version }}.tar.gz
-    url: https://github.com/nmoehrle/rayint/archive/{{ rayint_version }}.tar.gz
-    sha256: 81f636422de3579b2efd0f9ffa8fbcec79e5e148114b8926f98856c3882098c4
+    url: https://github.com/nmoehrle/rayint/archive/{{ rayint_commit }}.tar.gz
+    sha256: 54cfd7c962504deb7c8d3afc66123dfcb854a9ae00e492d87a3d9f361f50c5a0
     folder: elibs/rayint
   - fn: mve-{{ mve_version }}.tar.gz
-    url: https://github.com/simonfuhrmann/mve/archive/{{ mve_version }}.tar.gz
-    sha256: deaa1bcf04817c602119236e9efdd06a762bc8b0c8bb477ddcec0401d803913a
+    url: https://github.com/simonfuhrmann/mve/archive/{{ mve_commit }}.tar.gz
+    sha256: a1880f243b38ec0b669aa638225e45f300c508e621b1ee0fb3d444a665a512cc
     folder: elibs/mve
   - fn: mapmap-{{ mapmap_version }}.tar.gz
     url: https://github.com/dthuerck/mapmap_cpu/archive/{{ mapmap_version }}.tar.gz
-    sha256: 0103adbd053e360952df0fa731e41eb433319ff63c60ab04f2f6e5a55ec53490
+    sha256: b53db0f7e97c3c5a976e58ded3b66785c7fb0c3e5291a299469baa0dfea47863
     folder: elibs/mapmap
 
 build:
